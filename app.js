@@ -33,10 +33,18 @@ function getSelectedIngredients() {
     .map(box => box.textContent.toLowerCase());
 }
 
-function findRecipes(userIngredients, recipes) {
-  return recipes.filter(r =>
-    r.ingredients.every(i => userIngredients.includes(i.toLowerCase()))
-  );
+// updated: allow optional "match any" mode
+function findRecipes(userIngredients, recipes, matchAll = true) {
+  if (userIngredients.length === 0) return [];
+  
+  return recipes.filter(recipe => {
+    const recipeIngredients = recipe.ingredients.map(i => i.toLowerCase());
+    if (matchAll) {
+      return recipeIngredients.every(i => userIngredients.includes(i));
+    } else {
+      return recipeIngredients.some(i => userIngredients.includes(i));
+    }
+  });
 }
 
 function renderRecipes(recipes) {
@@ -62,19 +70,28 @@ function renderRecipes(recipes) {
 }
 
 async function initializeApp() {
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.textContent = "Loading recipes...";
+  
   const recipes = await loadRecipes();
   const allIngredients = getAllIngredients(recipes);
   createIngredientBoxes(allIngredients);
+  
+  resultsDiv.textContent = "";
 }
 
 async function performSearch() {
   const userIngredients = getSelectedIngredients();
+  if (userIngredients.length === 0) {
+    alert("Please select at least one ingredient!");
+    return;
+  }
+
   const recipes = await loadRecipes();
-  const matches = findRecipes(userIngredients, recipes);
+  const matches = findRecipes(userIngredients, recipes, false); // match any
   renderRecipes(matches);
 }
 
 document.getElementById("search-btn").addEventListener("click", performSearch);
 
-// Initialize the app when the page loads
 window.addEventListener("load", initializeApp);

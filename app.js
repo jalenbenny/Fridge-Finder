@@ -155,4 +155,21 @@ async function initializeApp() {
   renderFavorites();
 }
 
-async function
+async function performSearch() {
+  const userIngredients = getSelectedIngredients();
+  const selectedAllergens = getSelectedAllergens();
+
+  if (userIngredients.length === 0) {
+    alert("Please select at least one ingredient!");
+    return;
+  }
+
+  currentResults = findRecipes(userIngredients, allRecipes, selectedAllergens);
+  renderRecipes(currentResults);
+}
+
+// -----------------
+// Event Listeners
+// -----------------
+document.getElementById("search-btn").addEventListener("click", performSearch);
+window.addEventListener("load", initializeApp);

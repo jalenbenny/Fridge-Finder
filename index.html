@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🥫 Fridge Finder</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Finder</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>🥫 Fridge Finder</h1>
-
-  <!-- Ingredient Selection -->
-  <section id="input-section">
-    <p>Select your ingredients:</p>
-    <div id="ingredients-container" class="ingredients-grid"></div>
-    <button id="search-btn">Find Recipes</button>
-  </section>
-
-  <!-- Allergy Filters -->
-  <section id="filters-section">
-    <h2>Allergy Filters ⚠️</h2>
-    <div class="filters">
-      <label><input type="checkbox" class="allergy-filter" value="gluten"> Gluten</label>
-      <label><input type="checkbox" class="allergy-filter" value="nuts"> Nuts</label>
-      <label><input type="checkbox" class="allergy-filter" value="dairy"> Dairy</label>
+  <div class="container">
+    <h1>🍳 Recipe Finder</h1>
+    
+    <div class="section allergy-section">
+      <h2>Dietary Restrictions</h2>
+      <div class="allergy-filters">
+        <label>
+          <input type="checkbox" class="allergy-filter" value="gluten">
+          Gluten-Free
+        </label>
+        <label>
+          <input type="checkbox" class="allergy-filter" value="nuts">
+          Nut-Free
+        </label>
+        <label>
+          <input type="checkbox" class="allergy-filter" value="dairy">
+          Dairy-Free
+        </label>
+      </div>
     </div>
-  </section>
 
-  <!-- Search Results -->
-  <section id="results-section">
-    <h2>Matching Recipes 🍴</h2>
-    <div id="results"></div>
-  </section>
+    <div class="section">
+      <h2>Select Your Ingredients</h2>
+      <div id="ingredients-container"></div>
+      <button id="search-btn">Find Recipes</button>
+    </div>
 
-  <!-- Favorites -->
-  <section id="favorites-section">
-    <h2>Favorites ⭐</h2>
-    <div id="favorites"></div>
-  </section>
+    <div class="section">
+      <h2>Search Results</h2>
+      <div id="results"></div>
+    </div>
+
+    <div class="section">
+      <h2>⭐ Your Favorites</h2>
+      <div id="favorites"></div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

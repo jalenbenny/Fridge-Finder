@@ -1,153 +1,193 @@
-/* ------------------- */
-/* Body & Typography   */
-/* ------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 900px;
-  margin: 0 auto;
+  background: linear-gradient(135deg, #FFD89B 0%, #FFA347 50%, #FF8C42 100%);
+  min-height: 100vh;
   padding: 20px;
-  background-color: #fff3e6; /* warm background */
-  color: #333;
+  color: #4A2C2A;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #FFF8F0;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(74, 44, 42, 0.2);
 }
 
 h1 {
   text-align: center;
-  font-size: 2.5rem;
+  color: #D2691E;
   margin-bottom: 30px;
-  color: #d35400;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(255, 140, 66, 0.3);
 }
 
 h2 {
-  color: #d35400;
-  margin-bottom: 15px;
+  color: #B8732E;
+  margin: 30px 0 15px;
+  font-size: 1.5em;
 }
 
-/* ------------------- */
-/* Ingredient Section  */
-/* ------------------- */
-.ingredients-grid {
+.allergy-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #FFF5E6;
+  border-radius: 10px;
+  border: 2px solid #FFD89B;
+}
+
+.allergy-filters {
   display: flex;
+  gap: 20px;
   flex-wrap: wrap;
+}
+
+.allergy-filters label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #6B4423;
+}
+
+.allergy-filters input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #FF8C42;
+}
+
+#ingredients-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .ingredient-box {
-  padding: 8px 14px;
-  background-color: #ffe6d5;
-  border-radius: 20px;
+  padding: 15px;
+  background: #FFF8EB;
+  border: 2px solid #FFD89B;
+  border-radius: 10px;
+  text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-  border: 1px solid #f5b77d;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  color: #6B4423;
   font-weight: 500;
 }
 
 .ingredient-box:hover {
-  transform: scale(1.05);
-  background-color: #ffd1a4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
+  background: #FFF0D6;
 }
 
 .ingredient-box.selected {
-  background-color: #ff7f50;
+  background: linear-gradient(135deg, #FFA347 0%, #FF8C42 100%);
   color: white;
+  border-color: #FF8C42;
   font-weight: bold;
-  border: 1px solid #ff5a1a;
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
 }
 
-/* ------------------- */
-/* Allergy Filters     */
-/* ------------------- */
-.filters {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.filters label {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-/* ------------------- */
-/* Buttons             */
-/* ------------------- */
 #search-btn {
-  padding: 12px 25px;
-  font-size: 16px;
-  background-color: #ff7f50;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #FFA347 0%, #FF8C42 100%);
   color: white;
   border: none;
-  border-radius: 25px;
-  cursor: pointer;
+  border-radius: 10px;
+  font-size: 1.2em;
   font-weight: bold;
-  transition: background 0.2s ease, transform 0.1s ease;
-  display: block;
-  margin-top: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
 }
 
 #search-btn:hover {
-  background-color: #ff5a1a;
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 140, 66, 0.4);
+}
+
+#search-btn:active {
+  transform: scale(0.98);
+}
+
+.recipe-card {
+  background: white;
+  border: 2px solid #FFE4C4;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.15);
+  transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 140, 66, 0.25);
+}
+
+.recipe-card h3 {
+  color: #D2691E;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+.recipe-card p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #6B4423;
+}
+
+.recipe-card strong {
+  color: #B8732E;
 }
 
 .fav-btn {
   margin-top: 10px;
-  padding: 6px 12px;
-  border-radius: 15px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
   border: none;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  background-color: #ffd700;
-  transition: transform 0.1s ease;
+  font-size: 1em;
+  transition: all 0.2s;
+  color: #6B4423;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
 }
 
 .fav-btn:hover {
+  background: linear-gradient(135deg, #FFED4E 0%, #FFB900 100%);
   transform: scale(1.05);
-  background-color: #ffc107;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
 }
 
-/* ------------------- */
-/* Recipe Cards        */
-/* ------------------- */
 #results, #favorites {
-  margin-top: 15px;
-  display: grid;
-  gap: 20px;
+  min-height: 50px;
 }
 
-.recipe-card {
-  background-color: #fff8f0;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.section {
+  margin-bottom: 40px;
 }
 
-.recipe-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
-
-.recipe-card h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #d35400;
-}
-
-.recipe-card p {
-  margin: 5px 0;
-  line-height: 1.4;
-}
-
-/* ------------------- */
-/* Responsive Design   */
-/* ------------------- */
-@media (max-width: 600px) {
-  .ingredients-grid, .filters {
-    justify-content: center;
-  }
-  #search-btn {
-    width: 100%;
-  }
+.no-results {
+  text-align: center;
+  color: #B8732E;
+  font-size: 1.2em;
+  padding: 40px;
+  background: #FFF8EB;
+  border-radius: 10px;
+  border: 2px dashed #FFD89B;
 }

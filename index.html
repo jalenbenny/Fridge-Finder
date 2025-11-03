@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fridge Finder</title>
+  <title>🥫 Fridge Finder</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,12 +15,25 @@
     <button id="search-btn">Find Recipes</button>
   </section>
 
+  <section id="filters-section">
+    <h2>Allergy Filters ⚠️</h2>
+    <div class="filters">
+      <label><input type="checkbox" class="allergy-filter" value="gluten"> Gluten</label>
+      <label><input type="checkbox" class="allergy-filter" value="nuts"> Nuts</label>
+      <label><input type="checkbox" class="allergy-filter" value="dairy"> Dairy</label>
+    </div>
+  </section>
+
   <section id="results-section">
-    <h2>Matching Recipes</h2>
+    <h2>Matching Recipes 🍴</h2>
     <div id="results"></div>
+  </section>
+
+  <section id="favorites-section">
+    <h2>Favorites ⭐</h2>
+    <div id="favorites"></div>
   </section>
 
   <script src="app.js"></script>
 </body>
-
 </html>

@@ -83,7 +83,7 @@ function renderRecipes(recipes) {
   resultsDiv.innerHTML = "";
 
   if (recipes.length === 0) {
-    resultsDiv.textContent = "No matches found.";
+    resultsDiv.innerHTML = '<div class="no-results">No matches found. Try selecting different ingredients!</div>';
     return;
   }
 
@@ -126,9 +126,19 @@ function renderFavorites() {
   const favoritesDiv = document.getElementById("favorites");
   favoritesDiv.innerHTML = "";
 
-  const favoriteRecipes = Object.keys(localStorage).map(key => JSON.parse(localStorage.getItem(key)));
+  const favoriteRecipes = Object.keys(localStorage)
+    .filter(key => {
+      try {
+        const item = JSON.parse(localStorage.getItem(key));
+        return item && item.name && item.ingredients;
+      } catch {
+        return false;
+      }
+    })
+    .map(key => JSON.parse(localStorage.getItem(key)));
+
   if (favoriteRecipes.length === 0) {
-    favoritesDiv.textContent = "No favorite recipes yet.";
+    favoritesDiv.innerHTML = '<div class="no-results">No favorite recipes yet. Click the ☆ button to add favorites!</div>';
     return;
   }
 
@@ -136,11 +146,22 @@ function renderFavorites() {
     const card = document.createElement("div");
     card.className = "recipe-card";
     const emojis = recipe.ingredients.map(getIngredientEmoji).filter(Boolean).join(" ");
+    
+    const unfavButton = document.createElement("button");
+    unfavButton.textContent = "★ Remove";
+    unfavButton.className = "fav-btn";
+    unfavButton.addEventListener("click", () => {
+      localStorage.removeItem(recipe.name);
+      renderFavorites();
+      if (currentResults.length > 0) renderRecipes(currentResults);
+    });
+    
     card.innerHTML = `
       <h3>${emojis} ${recipe.name}</h3>
       <p><strong>Ingredients:</strong> ${recipe.ingredients.join(", ")}</p>
       <p>${recipe.instructions}</p>
     `;
+    card.appendChild(unfavButton);
     favoritesDiv.appendChild(card);
   });
 }
